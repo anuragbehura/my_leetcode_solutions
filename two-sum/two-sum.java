@@ -23,3 +23,5 @@
         return new int[]{};
     }
 }
+    public int[] twoSum(int[] nums, int target) {
+class Solution {
