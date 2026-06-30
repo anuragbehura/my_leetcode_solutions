@@ -1,0 +1,38 @@
+class Solution {
+    public String longestCommonPrefix(String[] strs) {
+        // ---------Brute Force-----------
+        if (strs.length == 0) return "";
+
+        // String prefix = strs[0]; // start with first string as common prefix
+
+        // for(int i = 1; i < strs.length; i++) {
+            // shrink prefix until it's actually a prefix of strs[i]
+        //     while(!strs[i].startsWith(prefix)) {
+        //         prefix = prefix.substring(0, prefix.length() - 1);
+        //         if(prefix.isEmpty()) return "";
+        //     }
+        // }
+
+        // return prefix;
+
+
+
+        // ---------Optimized Approach---------
+        // Vertical scanning - O(S) time worst case, but exits early on mismatch
+        // O(1) extra space
+        
+        for(int charIndex = 0; charIndex < strs[0].length(); charIndex++) {
+            char c = strs[0].charAt(charIndex);
+
+            for(int i = 1; i < strs.length; i++) {
+                // mismatch happens if this string is too short,
+                // OR the charecter at this position differs
+                if (charIndex == strs[i].length() || strs[i].charAt(charIndex) != c) {
+                    return strs[0].substring(0, charIndex);
+                }
+            }
+        }
+
+        return strs[0]; // first string itself is common prefix
+    }
+}
